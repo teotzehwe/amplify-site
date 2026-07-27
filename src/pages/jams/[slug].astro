@@ -16,7 +16,7 @@ const day = String(date.getUTCDate()).padStart(2, '0');
 const weekday = date.toLocaleDateString('en-US', { weekday: 'long', timeZone: 'UTC' }).toLowerCase();
 ---
 
-<Base title={`${title} — Amplify`}>
+<Base title={title}>
   <main style="width:100%; max-width:760px; margin-inline:auto; padding-inline:var(--space-5); padding-top:var(--space-8); padding-bottom:var(--space-9);">
     <a href="/upcoming-jams" class="footer-link" style="font-size:var(--text-body-sm); font-weight:600;">← all jams</a>
 
