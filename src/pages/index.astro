@@ -1,0 +1,18 @@
+---
+import Base from '../layouts/Base.astro';
+import Marquee from '../components/Marquee.astro';
+---
+
+<Base>
+  <main id="top">
+    <section style="position:relative; overflow:hidden; min-height:calc(100vh - 74px); display:flex; background:var(--wc-near-black);">
+      <img src="/assets/photos/hero-live.jpg" alt="A packed crowd at an Amplify live show, band on stage under a Nun Yur Business backdrop" style="position:absolute; inset:0; width:100%; height:100%; object-fit:cover;" />
+      <div style="position:absolute; inset:0; background:linear-gradient(to top, rgba(11,9,9,.62) 0%, rgba(11,9,9,.18) 42%, rgba(11,9,9,0) 72%);"></div>
+      <div style="position:relative; z-index:1; width:100%; max-width:var(--container-max); margin-inline:auto; padding-inline:var(--space-5); padding-block:var(--space-8); display:flex; flex-direction:column; justify-content:flex-end;">
+        <p style="font-size: var(--text-body-lg); color: rgba(255,255,255,.92); max-width: 44ch; margin-top: var(--space-5); line-height: 1.5; text-shadow: 0 1px 14px rgba(0,0,0,.45); font-family: Aileron;"><b>we build music events and community jams for the youth, creating third spaces along the way.</b></p>
+      </div>
+    </section>
+
+    <Marquee />
+  </main>
+</Base>

@@ -1,0 +1,20 @@
+---
+// One loop of words; duplicated below so the -50% translate animation is seamless.
+const words = [
+  'community jams', 'open mics', 'showcases', 'songwriting sessions',
+  "you don't have to be the best to belong", 'community jams', 'open mics',
+  'showcases', 'concerts', "you don't have to be the best to belong",
+];
+const size = '24px';
+---
+
+<div aria-hidden="true" style="background:var(--accent-primary); color:var(--text-on-accent); padding-block:var(--space-4); overflow:hidden;">
+  <div style="display:flex; gap:var(--space-6); white-space:nowrap; width:max-content; animation:marquee 26s linear infinite;">
+    {words.map((w) => (
+      <>
+        <span style={`font-family: Aileron; text-transform: lowercase; font-size: ${size}; letter-spacing: .02em; opacity: .95`}>{w}</span>
+        <span style="opacity:.6;">✳</span>
+      </>
+    ))}
+  </div>
+</div>

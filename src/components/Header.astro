@@ -1,0 +1,52 @@
+---
+const links = [
+  { href: '/what-we-do', label: 'what we do' },
+  { href: '/upcoming-jams', label: 'upcoming jams' },
+];
+---
+
+<header class="site-header">
+  <div class="site-header__bar">
+    <a href="/" aria-label="Amplify home" class="site-header__logo">
+      <img src="/assets/logos/amplify-logo-color-trim.png" alt="Amplify" />
+    </a>
+    <nav class="site-nav">
+      {links.map((l) => <a href={l.href}>{l.label}</a>)}
+      <a href="/rsvp" class="nav-cta">rsvp</a>
+    </nav>
+    <button class="amp-burger" type="button" aria-label="Open menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+  <div class="amp-mm" id="amp-mm">
+    {links.map((l) => <a href={l.href}>{l.label}</a>)}
+    <a href="/rsvp">rsvp</a>
+  </div>
+</header>
+
+<script>
+  const btn = document.querySelector<HTMLButtonElement>('.amp-burger');
+  const menu = document.getElementById('amp-mm');
+  if (btn && menu) {
+    const close = () => {
+      btn.setAttribute('aria-expanded', 'false');
+      menu.classList.remove('open');
+    };
+    btn.addEventListener('click', () => {
+      if (btn.getAttribute('aria-expanded') === 'true') close();
+      else {
+        btn.setAttribute('aria-expanded', 'true');
+        menu.classList.add('open');
+      }
+    });
+    menu.addEventListener('click', (e) => {
+      if ((e.target as HTMLElement).tagName === 'A') close();
+    });
+    window.addEventListener('resize', () => {
+      if (window.innerWidth >= 768) close();
+    });
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') close();
+    });
+  }
+</script>

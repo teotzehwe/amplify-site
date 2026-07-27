@@ -1,16 +1,9 @@
 {
-  "cleanUrls": true,
-  "trailingSlash": false,
   "redirects": [
     { "source": "/Amplify.dc.html", "destination": "/", "permanent": true },
-    { "source": "/Amplify.dc", "destination": "/", "permanent": true },
     { "source": "/RSVP.dc.html", "destination": "/rsvp", "permanent": true },
-    { "source": "/RSVP.dc", "destination": "/rsvp", "permanent": true },
     { "source": "/WhatWeDo.dc.html", "destination": "/what-we-do", "permanent": true },
-    { "source": "/WhatWeDo.dc", "destination": "/what-we-do", "permanent": true },
     { "source": "/UpcomingJams.dc.html", "destination": "/upcoming-jams", "permanent": true },
-    { "source": "/UpcomingJams.dc", "destination": "/upcoming-jams", "permanent": true },
-    { "source": "/Moments.dc.html", "destination": "/moments", "permanent": true },
-    { "source": "/Moments.dc", "destination": "/moments", "permanent": true }
+    { "source": "/Moments.dc.html", "destination": "/moments", "permanent": true }
   ]
 }

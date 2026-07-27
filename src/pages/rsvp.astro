@@ -1,0 +1,196 @@
+---
+import Base from '../layouts/Base.astro';
+import { options } from '../data/rsvpQuestions';
+
+const num = 'font-family:var(--font-display); font-weight:700; font-size:13px; letter-spacing:.12em; text-transform:uppercase; color:var(--accent-primary);';
+const reqTag = 'font-size:11px; font-weight:700; letter-spacing:.08em; text-transform:uppercase; color:var(--accent-primary);';
+const optTag = 'font-size:11px; font-weight:700; letter-spacing:.08em; text-transform:uppercase; color:var(--text-secondary);';
+const qTitle = 'font-family: Aileron; font-weight: 700; text-transform: lowercase; font-size: var(--text-heading-md); line-height: 1.15; margin: 10px 0 0;';
+const qHelp = 'font-size:var(--text-body-md); color:var(--text-secondary); margin:6px 0 0;';
+const qBlock = 'padding:var(--space-6) 0; border-bottom:1.5px solid var(--border-default);';
+const sectionHead = 'display:flex; align-items:center; gap:var(--space-3); margin-top:var(--space-7); margin-bottom:var(--space-2);';
+const sectionRule = 'height:3px; width:36px; background:var(--accent-primary); display:inline-block;';
+const sectionText = 'font-family:var(--font-display); font-weight:700; font-size:13px; letter-spacing:.16em; text-transform:uppercase; color:var(--text-secondary);';
+const infoChip = 'display:inline-flex; align-items:center; gap:8px; font-family:var(--font-display); text-transform:uppercase; letter-spacing:0.05em; font-size:var(--text-body-sm); font-weight:700; border:1.5px solid rgba(255,255,255,.5); border-radius:999px; padding:9px 18px;';
+---
+
+<Base title="rsvp — Amplify">
+  <main>
+    <!-- Hero -->
+    <section style="position:relative; overflow:hidden; background:var(--wc-near-black); color:#fff;">
+      <img src="/assets/photos/jam-live-062A3160.jpg" alt="Young performers singing at an outdoor Amplify jam" style="position:absolute; inset:0; width:100%; height:100%; object-fit:cover; opacity:.55;" />
+      <div style="position:absolute; inset:0; background:linear-gradient(to top, rgba(11,9,9,.92), rgba(11,9,9,.45));"></div>
+      <div style="position:relative; width:100%; max-width:var(--container-max); margin-inline:auto; padding:var(--space-9) var(--space-5) var(--space-8);">
+        <span style="display:inline-block; font-family:var(--font-display); text-transform:uppercase; letter-spacing:0.08em; font-size:var(--text-body-sm); color:var(--wc-honey); font-weight:700;">you're invited · community jam</span>
+        <h1 style="font-family: Aileron; font-weight: 700; letter-spacing: -0.01em; text-transform: lowercase; line-height: 0.94; font-size: clamp(3rem,9vw,60px); margin: var(--space-3) 0 0;">rsvp for the<br />8 august jam</h1>
+        <p style="font-size:var(--text-body-lg); line-height:1.6; color:rgba(255,255,255,.85); max-width:54ch; margin-top:var(--space-5);">we're so excited to meet you — fill in this quick form to secure your spot.</p>
+        <div style="display:flex; flex-wrap:wrap; gap:var(--space-3); margin-top:var(--space-6);">
+          <span style={infoChip}>sat · 8 august</span>
+          <span style={infoChip}>4:00 - 6:00 pm</span>
+          <span style={infoChip}>340a joo chiat road</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- Form -->
+    <section style="width:100%; max-width:820px; margin-inline:auto; padding:var(--space-8) var(--space-5) var(--space-9);">
+      <div id="rsvp-success" style="display:none; flex-direction:column; align-items:center; text-align:center; gap:var(--space-4); background:var(--surface-sunken); border-radius:24px; padding:var(--space-9) var(--space-6);">
+        <div style="width:72px; height:72px; border-radius:999px; background:var(--accent-primary); color:#fff; display:flex; align-items:center; justify-content:center; font-family:var(--font-display); font-size:36px;">♪</div>
+        <h2 style="font-family:var(--font-display); font-weight:700; text-transform:lowercase; font-size:var(--text-heading-lg); margin:0;">you're on the list</h2>
+        <p style="margin:0; color:var(--text-secondary); font-size:var(--text-body-lg); max-width:44ch;">see you at the 8 august jam ♪ we've sent a confirmation to your inbox — keep an eye out for a reminder closer to the date.</p>
+      </div>
+
+      <form id="rsvp-form" novalidate>
+        <!-- Q1 name -->
+        <div style={qBlock}>
+          <div style="display:flex; align-items:baseline; gap:12px;"><span style={num}>question 01</span><span style={reqTag}>required</span></div>
+          <h3 style={qTitle}>what should we call you?</h3>
+          <p style={qHelp}>your name, so we know who to expect.</p>
+          <input name="name" type="text" required placeholder="e.g. Sofia Tan" class="rsvp-input" />
+        </div>
+
+        <!-- Q2 age -->
+        <div style={qBlock}>
+          <div style="display:flex; align-items:baseline; gap:12px;"><span style={num}>question 02</span><span style={reqTag}>required</span></div>
+          <h3 style={qTitle}>how old are you?</h3>
+          <div class="q-chips" data-group="age" data-select="single" data-required>
+            {options.age.map((o) => <button type="button" class="chip" data-value={o}>{o}</button>)}
+          </div>
+        </div>
+
+        <!-- Q3 describe -->
+        <div style={qBlock}>
+          <div style="display:flex; align-items:baseline; gap:12px;"><span style={num}>question 03</span><span style={reqTag}>required</span></div>
+          <h3 style={qTitle}>which best describes you?</h3>
+          <div class="q-chips" data-group="describe" data-select="single" data-required>
+            {options.describe.map((o) => <button type="button" class="chip" data-value={o}>{o}</button>)}
+          </div>
+        </div>
+
+        <!-- Q4 school -->
+        <div style={qBlock}>
+          <div style="display:flex; align-items:baseline; gap:12px;"><span style={num}>question 04</span><span style={reqTag}>required</span></div>
+          <h3 style={qTitle}>which school or institution?</h3>
+          <p style={qHelp}>helps us connect you with people nearby.</p>
+          <input name="school" type="text" required placeholder="e.g. Nanyang Polytechnic" class="rsvp-input" />
+        </div>
+
+        <div style={sectionHead}><span style={sectionRule}></span><span style={sectionText}>musical background</span></div>
+
+        <!-- Q5 music -->
+        <div style={qBlock}>
+          <div style="display:flex; align-items:baseline; gap:12px;"><span style={num}>question 05</span><span style={reqTag}>required</span><span style={optTag}>select all</span></div>
+          <h3 style={qTitle}>how do you make music?</h3>
+          <div class="q-chips" data-group="music" data-select="multi" data-required>
+            {options.music.map((o) => <button type="button" class="chip" data-value={o}>{o}</button>)}
+          </div>
+        </div>
+
+        <!-- Q6 instruments (conditional) -->
+        <div id="q-instruments" style={`${qBlock} display:none;`}>
+          <div style="display:flex; align-items:baseline; gap:12px;"><span style={num}>question 06</span><span style={optTag}>select all</span></div>
+          <h3 style={qTitle}>which do you play?</h3>
+          <p style={qHelp}>pick all that apply.</p>
+          <div class="q-chips" data-group="instruments" data-select="multi">
+            {options.instruments.map((o) => <button type="button" class="chip" data-value={o}>{o}</button>)}
+          </div>
+        </div>
+
+        <!-- Q7 listen -->
+        <div style={qBlock}>
+          <div style="display:flex; align-items:baseline; gap:12px;"><span style={num}>question 07</span><span style={reqTag}>required</span><span style={optTag}>select all</span></div>
+          <h3 style={qTitle}>what do you love to listen to?</h3>
+          <p style={qHelp}>helps us plan themed jam nights.</p>
+          <div class="q-chips" data-group="listen" data-select="multi" data-required>
+            {options.listen.map((o) => <button type="button" class="chip" data-value={o}>{o}</button>)}
+          </div>
+        </div>
+
+        <div style={sectionHead}><span style={sectionRule}></span><span style={sectionText}>your interests</span></div>
+
+        <!-- Q8 why -->
+        <div style={qBlock}>
+          <div style="display:flex; align-items:baseline; gap:12px;"><span style={num}>question 08</span><span style={reqTag}>required</span><span style={optTag}>select all</span></div>
+          <h3 style={qTitle}>why are you coming?</h3>
+          <p style={qHelp}>choose all that feel true.</p>
+          <div class="q-chips" data-group="why" data-select="multi" data-required>
+            {options.why.map((o) => <button type="button" class="chip" data-value={o}>{o}</button>)}
+          </div>
+        </div>
+
+        <!-- Q9 find -->
+        <div style={qBlock}>
+          <div style="display:flex; align-items:baseline; gap:12px;"><span style={num}>question 09</span><span style={reqTag}>required</span><span style={optTag}>select all</span></div>
+          <h3 style={qTitle}>what are you hoping to find?</h3>
+          <p style={qHelp}>through amplify, over time.</p>
+          <div class="q-chips" data-group="find" data-select="multi" data-required>
+            {options.find.map((o) => <button type="button" class="chip" data-value={o}>{o}</button>)}
+          </div>
+        </div>
+
+        <!-- Q10 showup -->
+        <div style={qBlock}>
+          <div style="display:flex; align-items:baseline; gap:12px;"><span style={num}>question 10</span><span style={reqTag}>required</span><span style={optTag}>select all</span></div>
+          <h3 style={qTitle}>what would you show up for?</h3>
+          <p style={qHelp}>pick all that appeal — it shapes our programming.</p>
+          <div class="q-chips" data-group="showup" data-select="multi" data-required>
+            {options.showup.map((o) => <button type="button" class="chip" data-value={o}>{o}</button>)}
+          </div>
+        </div>
+
+        <!-- Q11 first -->
+        <div style={qBlock}>
+          <div style="display:flex; align-items:baseline; gap:12px;"><span style={num}>question 11</span><span style={reqTag}>required</span></div>
+          <h3 style={qTitle}>is this your first amplify event?</h3>
+          <div class="q-chips" data-group="first" data-select="single" data-required>
+            {options.first.map((o) => <button type="button" class="chip" data-value={o}>{o}</button>)}
+          </div>
+        </div>
+
+        <!-- Q12 dream -->
+        <div style={qBlock}>
+          <div style="display:flex; align-items:baseline; gap:12px;"><span style={num}>question 12</span><span style={optTag}>optional</span></div>
+          <h3 style={qTitle}>if we organised one event you'd definitely attend, what would it be?</h3>
+          <textarea name="dream" rows="3" placeholder="Tell us your dream Amplify night…" class="rsvp-input" style="resize:vertical;"></textarea>
+        </div>
+
+        <div style={sectionHead}><span style={sectionRule}></span><span style={sectionText}>stay connected</span></div>
+
+        <!-- Q13 email -->
+        <div style={qBlock}>
+          <div style="display:flex; align-items:baseline; gap:12px;"><span style={num}>question 13</span><span style={reqTag}>required</span></div>
+          <h3 style={qTitle}>what's your email?</h3>
+          <p style={qHelp}>we'll send your confirmation here.</p>
+          <input name="email" type="email" required placeholder="you@email.com" class="rsvp-input" />
+        </div>
+
+        <!-- Q14 heard -->
+        <div style={qBlock}>
+          <div style="display:flex; align-items:baseline; gap:12px;"><span style={num}>question 14</span><span style={optTag}>optional</span></div>
+          <h3 style={qTitle}>how did you hear about us?</h3>
+          <div class="q-chips" data-group="heard" data-select="single">
+            {options.heard.map((o) => <button type="button" class="chip" data-value={o}>{o}</button>)}
+          </div>
+        </div>
+
+        <!-- Q15 optout -->
+        <div style="padding:var(--space-6) 0;">
+          <div style="display:flex; align-items:baseline; gap:12px;"><span style={num}>question 15</span><span style={optTag}>optional</span></div>
+          <h3 style={qTitle}>one last thing</h3>
+          <p style={qHelp}>you'll automatically join the amplify mailing list so we can tell you about future events.</p>
+          <button type="button" id="optout-btn" class="optout-btn"><span style="font-family:var(--font-display); font-size:18px; line-height:1;">✓</span> i'd like to opt out of the mailing list</button>
+        </div>
+
+        <div id="rsvp-error" style="display:none; align-items:center; gap:10px; margin-top:var(--space-5); padding:14px 18px; border-radius:12px; background:color-mix(in oklch, var(--accent-primary) 12%, transparent); color:var(--accent-primary); font-size:var(--text-body-md); font-weight:600;">please answer the required questions before you send this in.</div>
+
+        <button type="submit" class="btn-coral" style="margin-top:var(--space-6); width:100%; display:inline-flex; align-items:center; justify-content:center; gap:8px; font-family:var(--font-display); text-transform:uppercase; letter-spacing:0.06em; font-weight:600; font-size:17px; padding:17px 28px; border:none; border-radius:999px; background:var(--accent-primary); color:#fff; cursor:pointer;">count me in ♪</button>
+        <p style="text-align:center; margin:var(--space-4) 0 0; color:var(--text-secondary); font-size:var(--text-body-sm);">free entry · all young people welcome · you don't have to be the best to belong.</p>
+      </form>
+    </section>
+  </main>
+</Base>
+
+<script>
+  import { initRsvp } from '../scripts/rsvp';
+  initRsvp();
+</script>

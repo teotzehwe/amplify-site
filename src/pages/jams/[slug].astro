@@ -1,0 +1,42 @@
+---
+import Base from '../../layouts/Base.astro';
+import { getCollection, render } from 'astro:content';
+
+export async function getStaticPaths() {
+  const events = await getCollection('events');
+  return events.map((event) => ({ params: { slug: event.id }, props: { event } }));
+}
+
+const { event } = Astro.props;
+const { Content } = await render(event);
+const { title, tag, date, timeLabel, venue, rsvpUrl } = event.data;
+
+const month = date.toLocaleDateString('en-US', { month: 'short', timeZone: 'UTC' });
+const day = String(date.getUTCDate()).padStart(2, '0');
+const weekday = date.toLocaleDateString('en-US', { weekday: 'long', timeZone: 'UTC' }).toLowerCase();
+---
+
+<Base title={`${title} — Amplify`}>
+  <main style="width:100%; max-width:760px; margin-inline:auto; padding-inline:var(--space-5); padding-top:var(--space-8); padding-bottom:var(--space-9);">
+    <a href="/upcoming-jams" class="footer-link" style="font-size:var(--text-body-sm); font-weight:600;">← all jams</a>
+
+    <div style="display:flex; align-items:center; gap:var(--space-5); margin-top:var(--space-5);">
+      <div style="display:flex; flex-direction:column; align-items:center; justify-content:center; width:96px; height:96px; border-radius:16px; background:var(--wc-coral); color:#fff; flex:none;">
+        <span style="font-family:var(--font-display); text-transform:uppercase; font-size:var(--text-body-sm); letter-spacing:0.08em; opacity:.9;">{month}</span>
+        <span style="font-family:var(--font-display); font-weight:700; font-size:40px; line-height:1;">{day}</span>
+      </div>
+      <div>
+        <span style="display:inline-block; font-family:var(--font-display); text-transform:uppercase; letter-spacing:0.06em; font-size:var(--text-caption); font-weight:700; color:var(--wc-coral); border:1.5px solid var(--wc-coral); border-radius:999px; padding:3px 12px; margin-bottom:10px;">{tag}</span>
+        <h1 style="font-family:var(--font-body); font-weight:900; font-size:var(--text-heading-lg); margin:0; text-transform:lowercase; letter-spacing:-0.01em;">{title}</h1>
+      </div>
+    </div>
+
+    <p style="margin-top:var(--space-5); color:var(--text-secondary); font-size:var(--text-body-lg);">{weekday} · {timeLabel}<br />{venue}</p>
+
+    <div style="margin-top:var(--space-5); font-size:var(--text-body-lg); line-height:1.6; color:var(--text-secondary);">
+      <Content />
+    </div>
+
+    <a href={rsvpUrl} class="btn-dark" style="margin-top:var(--space-6); display:inline-flex; align-items:center; justify-content:center; gap:8px; font-family:var(--font-display); text-transform:uppercase; letter-spacing:0.06em; font-weight:600; font-size:15px; padding:14px 30px; border-radius:999px; background:var(--text-primary); color:#fff;">rsvp for this jam →</a>
+  </main>
+</Base>

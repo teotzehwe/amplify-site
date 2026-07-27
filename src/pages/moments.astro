@@ -1,0 +1,43 @@
+---
+import Base from '../layouts/Base.astro';
+
+const shots = [
+  { src: 'ah-crowd.png', alt: 'A packed crowd with hands raised at an Amplify jam', caption: 'the pit · jam vol. 11' },
+  { src: 'wc-livingroom.png', alt: 'Four young musicians playing acoustic guitars in a living room', caption: 'living room session' },
+  { src: 'ah-group-point.png', alt: 'Two friends throwing shakas at a show', caption: 'first-timers' },
+  { src: 'wc-rehearsal.png', alt: 'A band rehearsing in a bright room', caption: 'soundcheck' },
+  { src: 'ah-flash-portrait.png', alt: 'Flash portrait of two friends at night', caption: 'outside, after' },
+  { src: 'wc-setlist.png', alt: 'A handwritten setlist with guitar picks and a disposable camera', caption: 'the setlist' },
+  { src: 'ah-streetlight.png', alt: 'Friends walking home under a streetlight', caption: 'the walk home' },
+  { src: 'wc-steps-couple.png', alt: 'Two people sharing a phone on outdoor steps at golden hour', caption: 'golden hour' },
+];
+---
+
+<Base title="moments — Amplify">
+  <main>
+    <section style="width:100%; max-width:var(--container-max); margin-inline:auto; padding-inline:var(--space-5); padding-top:var(--space-8); padding-bottom:var(--space-6);">
+      <span style="display:inline-block; font-family:var(--font-display); text-transform:uppercase; letter-spacing:0.08em; font-size:var(--text-body-sm); color:var(--accent-brand); font-weight:700;">shot on disposable</span>
+      <h1 style="font-family:var(--font-display); font-weight:700; letter-spacing:-0.01em; text-transform:lowercase; line-height:0.96; font-size:clamp(2.8rem,8vw,var(--text-display-lg)); margin:var(--space-3) 0 0;">moments</h1>
+      <p style="font-size:var(--text-body-lg); line-height:1.6; color:var(--text-secondary); max-width:56ch; margin-top:var(--space-5);">the pit, the porch, the after-walk home. snapshots from jams past — proof that you don't have to be the best to belong.</p>
+    </section>
+
+    <section style="width:100%; max-width:var(--container-max); margin-inline:auto; padding-inline:var(--space-5); padding-bottom:var(--space-8);">
+      <div style="columns:3; column-gap:var(--space-4);">
+        {shots.map((s) => (
+          <figure style="break-inside:avoid; margin:0 0 var(--space-4); border-radius:16px; overflow:hidden; position:relative; box-shadow:var(--shadow-soft);">
+            <img src={`/assets/photos/${s.src}`} alt={s.alt} style="display:block; width:100%; height:auto;" />
+            <figcaption style="position:absolute; left:0; right:0; bottom:0; padding:14px 16px 12px; color:#fff; font-family:var(--font-display); text-transform:lowercase; letter-spacing:0.02em; font-size:var(--text-body-md); background:linear-gradient(to top, rgba(11,9,9,.72), rgba(11,9,9,0));">{s.caption}</figcaption>
+          </figure>
+        ))}
+      </div>
+    </section>
+
+    <section style="width:100%; max-width:var(--container-max); margin-inline:auto; padding-inline:var(--space-5); padding-bottom:var(--space-9);">
+      <div style="background:var(--wc-near-black); border-radius:24px; padding:var(--space-8); text-align:center; color:#fff;">
+        <h3 style="font-family:var(--font-display); font-weight:700; text-transform:lowercase; font-size:var(--text-display-md); margin:0; line-height:0.98;">tag us in yours</h3>
+        <p style="margin:var(--space-4) auto 0; max-width:46ch; color:rgba(255,255,255,.82); font-size:var(--text-body-lg);">every jam gets a disposable camera passed around. share your frames and we'll repost the best ones.</p>
+        <a href="https://www.instagram.com/amplifyforyouth/" target="_blank" rel="noopener" class="btn-tag" style="margin-top:var(--space-6); display:inline-flex; align-items:center; justify-content:center; gap:8px; font-family:var(--font-display); text-transform:uppercase; letter-spacing:0.06em; font-weight:600; font-size:15px; padding:14px 32px; border-radius:999px; background:var(--accent-primary); color:#fff;">@amplifyforyouth</a>
+      </div>
+    </section>
+  </main>
+</Base>
