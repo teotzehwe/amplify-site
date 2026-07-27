@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://amplifyforyouth.vercel.app/sitemap-index.xml
+Sitemap: https://amplifyforyouth.cc/sitemap-index.xml

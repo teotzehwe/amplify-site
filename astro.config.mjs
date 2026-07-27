@@ -6,7 +6,7 @@ import sitemap from '@astrojs/sitemap';
 // @astrojs/vercel, set `adapter: vercel()` + `output: 'server'`, and mark
 // dynamic routes with `export const prerender = false` (plus src/pages/api/*).
 export default defineConfig({
-  site: 'https://amplifyforyouth.vercel.app',
+  site: 'https://amplifyforyouth.cc',
   output: 'static',
   integrations: [sitemap()],
 });
