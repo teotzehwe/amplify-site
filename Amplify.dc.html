@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+<link rel="stylesheet" href="mobile.css">
+<script src="mobile.js" defer></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<style>
+@font-face { font-family:'Arial Nova Condensed'; src:url('assets/fonts/arial-nova-condensed.ttf') format('truetype'); font-weight:400; font-style:normal; font-display:swap; }
+@font-face { font-family:'Aileron'; src:url('assets/fonts/Aileron-Light.otf') format('opentype'); font-weight:350; font-style:normal; font-display:swap; }
+@font-face { font-family:'Aileron'; src:url('assets/fonts/Aileron-Regular.otf') format('opentype'); font-weight:400; font-style:normal; font-display:swap; }
+@font-face { font-family:'Aileron'; src:url('assets/fonts/Aileron-Italic.otf') format('opentype'); font-weight:400; font-style:italic; font-display:swap; }
+@font-face { font-family:'Aileron'; src:url('assets/fonts/Aileron-SemiBold.otf') format('opentype'); font-weight:600; font-style:normal; font-display:swap; }
+@font-face { font-family:'Aileron'; src:url('assets/fonts/Aileron-Bold.otf') format('opentype'); font-weight:700; font-style:normal; font-display:swap; }
+@font-face { font-family:'Aileron'; src:url('assets/fonts/Aileron-Black.otf') format('opentype'); font-weight:900; font-style:normal; font-display:swap; }
+:root{
+  --wc-coral:#FB5624; --wc-orange:#F69435; --wc-honey:#E2B279; --wc-cream:#FEEED4; --wc-sand:#D9CCBE; --wc-dusty-blue:#98B2BF; --wc-lavender:#AC7AB7; --wc-near-black:#0B0909;
+  --surface-page:#FFFFFF; --surface-raised:#FFFFFF; --surface-sunken:var(--wc-sand);
+  --text-primary:var(--wc-near-black); --text-secondary:color-mix(in oklch, var(--wc-near-black) 65%, transparent); --text-on-accent:var(--wc-cream);
+  --accent-primary:var(--wc-coral); --accent-secondary:var(--wc-orange); --accent-highlight:var(--wc-honey); --accent-cool:var(--wc-dusty-blue); --accent-brand:var(--wc-lavender);
+  --border-default:color-mix(in oklch, var(--wc-near-black) 15%, transparent);
+  --shadow-soft:0 2px 10px color-mix(in oklch, var(--wc-near-black) 10%, transparent);
+  --shadow-card:0 6px 24px color-mix(in oklch, var(--wc-near-black) 12%, transparent);
+  --font-display:'Arial Nova Condensed','Arial Narrow',sans-serif; --font-body:'Aileron',-apple-system,sans-serif;
+  --space-1:4px; --space-2:8px; --space-3:12px; --space-4:16px; --space-5:24px; --space-6:32px; --space-7:48px; --space-8:64px; --space-9:96px; --space-10:128px;
+  --text-display-xl:96px; --text-display-lg:72px; --text-display-md:56px; --text-heading-lg:32px; --text-heading-md:24px; --text-heading-sm:20px; --text-body-lg:19px; --text-body-md:16px; --text-body-sm:14px; --text-caption:12px;
+  --container-max:1200px;
+}
+html{ scroll-behavior:smooth; }
+*,*::before,*::after{ box-sizing:border-box; }
+body{ margin:0; font-family:var(--font-body); background:var(--surface-page); color:var(--text-primary); font-size:16px; line-height:1.5; -webkit-font-smoothing:antialiased; text-rendering:optimizeLegibility; }
+section[id]{ scroll-margin-top:88px; }
+a{ color:var(--text-secondary); text-decoration:none; transition:color .15s; }
+a:hover{ color:var(--text-primary); }
+@keyframes pulse{ 0%{ box-shadow:0 0 0 0 color-mix(in oklch, var(--accent-primary) 60%, transparent); } 70%{ box-shadow:0 0 0 8px transparent; } 100%{ box-shadow:0 0 0 0 transparent; } }
+@keyframes marquee{ to{ transform:translateX(-50%); } }
+</style>
+</helmet>
+
+<header style="position:sticky; top:0; z-index:50; background:color-mix(in oklch, var(--surface-page) 88%, transparent); backdrop-filter:saturate(1.1) blur(8px); border-bottom:1.5px solid var(--border-default);">
+  <div style="width:100%; max-width:var(--container-max); margin-inline:auto; padding-inline:var(--space-5); display:flex; align-items:center; justify-content:space-between; height:74px;">
+    <a href="#top" aria-label="Amplify home" style="display:flex; align-items:center; gap:10px;"><img src="assets/logos/amplify-logo-color-trim.png" alt="Amplify" style="height:46px; width:auto; display:block;"></a>
+    <nav style="display:flex; align-items:center; gap:var(--space-6);">
+      <a href="WhatWeDo.dc.html" style="font-size:14px; font-weight:600;" style-hover="color:var(--text-primary)">what we do</a>
+      <a href="UpcomingJams.dc.html" style="font-size:14px; font-weight:600;" style-hover="color:var(--text-primary)">upcoming jams</a>
+      <a href="RSVP.dc.html" style="margin-left:var(--space-4); display:inline-flex; align-items:center; justify-content:center; gap:8px; font-family:var(--font-display); text-transform:uppercase; letter-spacing:0.06em; font-weight:600; font-size:15px; padding:13px 28px; border-radius:999px; border:1.5px solid var(--text-primary); background:transparent; color:var(--text-primary);" style-hover="background:var(--text-primary); color:#fff">rsvp</a>
+    </nav>
+  </div>
+</header>
+
+<main id="top">
+
+  <section style="position:relative; overflow:hidden; min-height:calc(100vh - 74px); display:flex; background:var(--wc-near-black);">
+    <img src="assets/photos/hero-live.jpg" alt="A packed crowd at an Amplify live show, band on stage under a Nun Yur Business backdrop" style="position:absolute; inset:0; width:100%; height:100%; object-fit:cover;">
+    <div style="position:absolute; inset:0; background:linear-gradient(to top, rgba(11,9,9,.62) 0%, rgba(11,9,9,.18) 42%, rgba(11,9,9,0) 72%);"></div>
+    
+  <div style="position:relative; z-index:1; width:100%; max-width:var(--container-max); margin-inline:auto; padding-inline:var(--space-5); padding-block:var(--space-8); display:flex; flex-direction:column; justify-content:flex-end;">
+      <p style="font-size: var(--text-body-lg); color: rgba(255,255,255,.92); max-width: 44ch; margin-top: var(--space-5); line-height: 1.5; text-shadow: 0 1px 14px rgba(0,0,0,.45); font-family: Aileron"><b>we build music events and community jams for the youth, creating third spaces along the way.</b></p>
+      
+    </div></section>
+
+  <div aria-hidden="true" style="background:var(--accent-primary); color:var(--text-on-accent); padding-block:var(--space-4); overflow:hidden;">
+    <div style="display:flex; gap:var(--space-6); white-space:nowrap; width:max-content; animation:marquee 26s linear infinite; animation-play-state:{{ animPlay }};">
+      <span style="font-family: Aileron; text-transform: lowercase; font-size: {{ marqueeSize }}; letter-spacing: .02em; opacity: .95">community jams</span><span style="opacity:.6;">✳</span>
+      <span style="font-family: Aileron; text-transform: lowercase; font-size: {{ marqueeSize }}; letter-spacing: .02em; opacity: .95">open mics</span><span style="opacity:.6;">✳</span>
+      <span style="font-family: Aileron; text-transform: lowercase; font-size: {{ marqueeSize }}; letter-spacing: .02em; opacity: .95">showcases</span><span style="opacity:.6;">✳</span>
+      <span style="font-family: Aileron; text-transform: lowercase; font-size: {{ marqueeSize }}; letter-spacing: .02em; opacity: .95">songwriting sessions</span><span style="opacity:.6;">✳</span>
+      <span style="font-family: Aileron; text-transform: lowercase; font-size: {{ marqueeSize }}; letter-spacing: .02em; opacity: .95">you don't have to be the best to belong</span><span style="opacity:.6;">✳</span>
+      <span style="font-family: Aileron; text-transform: lowercase; font-size: {{ marqueeSize }}; letter-spacing: .02em; opacity: .95">community jams</span><span style="opacity:.6;">✳</span>
+      <span style="font-family: Aileron; text-transform: lowercase; font-size: {{ marqueeSize }}; letter-spacing: .02em; opacity: .95">open mics</span><span style="opacity:.6;">✳</span>
+      <span style="font-family: Aileron; text-transform: lowercase; font-size: {{ marqueeSize }}; letter-spacing: .02em; opacity: .95">showcases</span><span style="opacity:.6;">✳</span>
+      <span style="font-family: Aileron; text-transform: lowercase; font-size: {{ marqueeSize }}; letter-spacing: .02em; opacity: .95">concerts</span><span style="opacity:.6;">✳</span>
+      <span style="font-family: Aileron; text-transform: lowercase; font-size: {{ marqueeSize }}; letter-spacing: .02em; opacity: .95">you don't have to be the best to belong</span><span style="opacity:.6;">✳</span>
+    </div>
+  </div>
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</main>
+
+<footer style="background:var(--surface-page); color:var(--text-primary); padding-block:var(--space-8) var(--space-6); border-top:1.5px solid var(--border-default);">
+  <div style="width:100%; max-width:var(--container-max); margin-inline:auto; padding-inline:var(--space-5);">
+    <div style="display:grid; grid-template-columns:1.6fr 1fr 1fr; gap:var(--space-6);">
+      <div>
+        <img src="assets/logos/amplify-logo-color-trim.png" alt="Amplify" style="height:60px; width:auto; margin-bottom:var(--space-4);">
+        <p style="color:var(--text-secondary); font-size:var(--text-body-sm); max-width:34ch;">a youth movement bringing young people together through music. you don't have to be the best to belong.</p>
+      </div>
+      <div>
+        <h4 style="font-family:var(--font-display); font-weight:700; text-transform:uppercase; font-size:var(--text-heading-sm); margin:0 0 var(--space-4);">explore</h4>
+        <ul style="list-style:none; margin:0; padding:0;">
+          <li style="margin-bottom:10px;"><a href="WhatWeDo.dc.html" style="font-size:var(--text-body-sm);" style-hover="color:var(--accent-primary)">what we do</a></li>
+          <li style="margin-bottom:10px;"><a href="UpcomingJams.dc.html" style="font-size:var(--text-body-sm);" style-hover="color:var(--accent-primary)">upcoming jams</a></li>
+          <li style="margin-bottom:10px;"><a href="Moments.dc.html" style="font-size:var(--text-body-sm);" style-hover="color:var(--accent-primary)">moments</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4 style="font-family:var(--font-display); font-weight:700; text-transform:uppercase; font-size:var(--text-heading-sm); margin:0 0 var(--space-4);">say hi</h4>
+        <ul style="list-style:none; margin:0; padding:0;">
+          <li style="margin-bottom:10px;"><a href="https://www.instagram.com/amplifyforyouth/" target="_blank" rel="noopener" style="font-size:var(--text-body-sm);" style-hover="color:var(--accent-primary)">instagram</a></li>
+          <li style="margin-bottom:10px;"><a href="https://www.tiktok.com/@amplifyforyouth" target="_blank" rel="noopener" style="font-size:var(--text-body-sm);" style-hover="color:var(--accent-primary)">tiktok</a></li>
+          <li style="margin-bottom:10px;"></li>
+        </ul>
+      </div>
+    </div>
+    <div style="display:flex; justify-content:space-between; align-items:center; margin-top:var(--space-8); padding-top:var(--space-5); border-top:1.5px solid var(--border-default); color:var(--text-secondary); font-size:var(--text-body-sm); flex-wrap:wrap; gap:var(--space-3);">
+      <span>© 2026 amplify · made in singapore, for the passion.</span>
+      
+    </div>
+  </div>
+</footer>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{
+  &quot;marqueeSize&quot;: { &quot;editor&quot;: &quot;range&quot;, &quot;default&quot;: 24, &quot;min&quot;: 14, &quot;max&quot;: 56, &quot;step&quot;: 1, &quot;unit&quot;: &quot;px&quot;, &quot;tsType&quot;: &quot;number&quot;, &quot;section&quot;: &quot;Marquee&quot; },
+  &quot;marqueePaused&quot;: { &quot;editor&quot;: &quot;boolean&quot;, &quot;default&quot;: false, &quot;tsType&quot;: &quot;boolean&quot;, &quot;section&quot;: &quot;Marquee&quot; }
+}">
+class Component extends DCLogic {
+  state = { submitted: false };
+  submit = (e) => {
+    e.preventDefault();
+    const form = e.currentTarget;
+    if (!form.checkValidity()) { form.reportValidity(); return; }
+    this.setState({ submitted: true });
+  };
+  renderVals() {
+    return {
+      submit: this.submit,
+      okDisplay: this.state.submitted ? 'block' : 'none',
+      submitLabel: this.state.submitted ? "you're in ♪" : 'count me in',
+      marqueeSize: `${this.props.marqueeSize ?? 24}px`,
+      animPlay: this.props.marqueePaused ? 'paused' : 'running',
+    };
+  }
+}
+</script>
+</body>
+</html>
