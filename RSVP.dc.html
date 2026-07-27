@@ -230,6 +230,9 @@ a:hover{ color:var(--text-primary); }
 </x-dc>
 <script type="text/x-dc" data-dc-script>
 class Component extends DCLogic {
+  // Google Apps Script Web App URL (ends in /exec). Paste it here after deploying.
+  ENDPOINT = 'https://script.google.com/macros/s/AKfycbz6AOo8nf2wnYSzC2DC68rxXR8eyT33-Z7f7Ydzo3-gfi_pz_HAU_aX5LgcoxqE1VuI/exec';
+
   state = {
     single: { age:'', describe:'', area:'', first:'', heard:'' },
     multi: { music:[], instruments:[], listen:[], why:[], find:[], showup:[] },
@@ -272,6 +275,40 @@ class Component extends DCLogic {
       if (!okNative) form.reportValidity();
       this.setState({ error: true });
       return;
+    }
+    // Collect every answer: native text inputs via FormData, selects from state.
+    const fd = new FormData(form);
+    const join = a => (a || []).join(', ');
+    const payload = {
+      timestamp: new Date().toISOString(),
+      name: fd.get('name') || '',
+      age: s.single.age,
+      describe: s.single.describe,
+      school: fd.get('school') || '',
+      area: s.single.area,
+      music: join(s.multi.music),
+      instruments: join(s.multi.instruments),
+      listen: join(s.multi.listen),
+      why: join(s.multi.why),
+      find: join(s.multi.find),
+      showup: join(s.multi.showup),
+      first: s.single.first,
+      dream: fd.get('dream') || '',
+      email: fd.get('email') || '',
+      heard: s.single.heard,
+      mailing_list: s.optout ? 'opted out' : 'subscribed',
+    };
+    // Send to the Google Sheet (Apps Script Web App). Fire-and-forget:
+    // text/plain avoids a CORS preflight; no-cors avoids an unreadable-response error.
+    if (this.ENDPOINT && this.ENDPOINT.indexOf('http') === 0) {
+      try {
+        fetch(this.ENDPOINT, {
+          method: 'POST',
+          mode: 'no-cors',
+          headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+          body: JSON.stringify(payload),
+        }).catch(function () {});
+      } catch (err) {}
     }
     this.setState({ submitted: true, error: false });
     if (window.scrollTo) window.scrollTo({ top: 0, behavior: 'smooth' });
