@@ -7,7 +7,7 @@ const events = (await getCollection('events', (e) => e.data.published !== false)
   .sort((a, b) => a.data.date.valueOf() - b.data.date.valueOf());
 ---
 
-<Base title="upcoming jams">
+<Base title="upcoming jams" description="Upcoming AmplifyForYouth jams — free, open music events for young people in Singapore. Show up, bring a friend, no experience needed.">
   <main>
     <section style="width:100%; max-width:var(--container-max); margin-inline:auto; padding-inline:var(--space-5); padding-top:var(--space-8); padding-bottom:var(--space-6);">
       <span style="display:inline-flex; align-items:center; gap:8px; font-family:var(--font-display); text-transform:uppercase; letter-spacing:0.08em; font-size:var(--text-body-sm); color:var(--accent-primary); font-weight:700;"><span style="width:8px; height:8px; border-radius:999px; background:var(--accent-primary); display:inline-block; animation:pulse 2s infinite;"></span>the calendar</span>
