@@ -1,5 +1,5 @@
 ---
-title: "saturday night jam vol. 13"
+title: "community jam vol. 8"
 tag: "community jam"
 date: 2026-08-29
 timeLabel: "4:00pm - 6:00pm"
