@@ -1,12 +1,15 @@
 // @ts-check
 import { defineConfig } from 'astro/config';
 import sitemap from '@astrojs/sitemap';
+import vercel from '@astrojs/vercel';
 
-// Static site today. To add accounts / ticketing / payments later, install
-// @astrojs/vercel, set `adapter: vercel()` + `output: 'server'`, and mark
-// dynamic routes with `export const prerender = false` (plus src/pages/api/*).
+// Static by default. The Vercel adapter is here so individual routes can opt
+// into on-demand rendering with `export const prerender = false` — today that
+// is just `src/pages/api/rsvp.ts`, which forwards RSVPs to the Google Apps
+// Script server-side. Every page still ships as static HTML.
 export default defineConfig({
   site: 'https://amplifyforyouth.cc',
   output: 'static',
+  adapter: vercel(),
   integrations: [sitemap()],
 });

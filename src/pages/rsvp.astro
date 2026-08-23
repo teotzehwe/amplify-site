@@ -12,6 +12,18 @@ const sectionHead = 'display:flex; align-items:center; gap:var(--space-3); margi
 const sectionRule = 'height:3px; width:36px; background:var(--accent-primary); display:inline-block;';
 const sectionText = 'font-family:var(--font-display); font-weight:700; font-size:13px; letter-spacing:.16em; text-transform:uppercase; color:var(--text-secondary);';
 const infoChip = 'display:inline-flex; align-items:center; gap:8px; font-family:var(--font-display); text-transform:uppercase; letter-spacing:0.05em; font-size:var(--text-body-sm); font-weight:700; border:1.5px solid rgba(255,255,255,.5); border-radius:999px; padding:9px 18px;';
+
+// The jam this RSVP form is collecting for. Change this block when the form
+// points at a new event — the hero, the info chips, the success message and
+// the event tag on every saved RSVP all read from here.
+const jam = {
+  // Stable id stored on every RSVP row, so one table serves every jam.
+  slug: 'saturday-night-jam-vol-13',
+  headline: '29 august jam',
+  dayLabel: 'sat · 29 august',
+  timeLabel: '4:00 - 6:00 pm',
+  venue: '340a joo chiat road',
+};
 ---
 
 <Base title="rsvp" description="RSVP for the next AmplifyForYouth community jam — free entry, all young people welcome. Reserve your spot in a couple of minutes.">
@@ -22,12 +34,12 @@ const infoChip = 'display:inline-flex; align-items:center; gap:8px; font-family:
       <div style="position:absolute; inset:0; background:linear-gradient(to top, rgba(11,9,9,.92), rgba(11,9,9,.45));"></div>
       <div style="position:relative; width:100%; max-width:var(--container-max); margin-inline:auto; padding:var(--space-9) var(--space-5) var(--space-8);">
         <span style="display:inline-block; font-family:var(--font-display); text-transform:uppercase; letter-spacing:0.08em; font-size:var(--text-body-sm); color:var(--wc-honey); font-weight:700;">you're invited · community jam</span>
-        <h1 style="font-family: Aileron; font-weight: 700; letter-spacing: -0.01em; text-transform: lowercase; line-height: 0.94; font-size: clamp(3rem,9vw,60px); margin: var(--space-3) 0 0;">rsvp for the<br />8 august jam</h1>
+        <h1 style="font-family: Aileron; font-weight: 700; letter-spacing: -0.01em; text-transform: lowercase; line-height: 0.94; font-size: clamp(3rem,9vw,60px); margin: var(--space-3) 0 0;">rsvp for the<br />{jam.headline}</h1>
         <p style="font-size:var(--text-body-lg); line-height:1.6; color:rgba(255,255,255,.85); max-width:54ch; margin-top:var(--space-5);">we're so excited to meet you — fill in this quick form to secure your spot.</p>
         <div style="display:flex; flex-wrap:wrap; gap:var(--space-3); margin-top:var(--space-6);">
-          <span style={infoChip}>sat · 8 august</span>
-          <span style={infoChip}>4:00 - 6:00 pm</span>
-          <span style={infoChip}>340a joo chiat road</span>
+          <span style={infoChip}>{jam.dayLabel}</span>
+          <span style={infoChip}>{jam.timeLabel}</span>
+          <span style={infoChip}>{jam.venue}</span>
         </div>
       </div>
     </section>
@@ -37,10 +49,10 @@ const infoChip = 'display:inline-flex; align-items:center; gap:8px; font-family:
       <div id="rsvp-success" style="display:none; flex-direction:column; align-items:center; text-align:center; gap:var(--space-4); background:var(--surface-sunken); border-radius:24px; padding:var(--space-9) var(--space-6);">
         <div style="width:72px; height:72px; border-radius:999px; background:var(--accent-primary); color:#fff; display:flex; align-items:center; justify-content:center; font-family:var(--font-display); font-size:36px;">♪</div>
         <h2 style="font-family:var(--font-display); font-weight:700; text-transform:lowercase; font-size:var(--text-heading-lg); margin:0;">you're on the list</h2>
-        <p style="margin:0; color:var(--text-secondary); font-size:var(--text-body-lg); max-width:44ch;">see you at the 8 august jam ♪ we've sent a confirmation to your inbox — keep an eye out for a reminder closer to the date.</p>
+        <p style="margin:0; color:var(--text-secondary); font-size:var(--text-body-lg); max-width:44ch;">see you at the {jam.headline} ♪ we'll drop you a message soon!</p>
       </div>
 
-      <form id="rsvp-form" novalidate>
+      <form id="rsvp-form" data-event={jam.slug} novalidate>
         <!-- Q1 name -->
         <div style={qBlock}>
           <div style="display:flex; align-items:baseline; gap:12px;"><span style={num}>question 01</span><span style={reqTag}>required</span></div>
@@ -156,12 +168,12 @@ const infoChip = 'display:inline-flex; align-items:center; gap:8px; font-family:
 
         <div style={sectionHead}><span style={sectionRule}></span><span style={sectionText}>stay connected</span></div>
 
-        <!-- Q13 email -->
+        <!-- Q13 telegram -->
         <div style={qBlock}>
           <div style="display:flex; align-items:baseline; gap:12px;"><span style={num}>question 13</span><span style={reqTag}>required</span></div>
-          <h3 style={qTitle}>what's your email?</h3>
-          <p style={qHelp}>we'll send your confirmation here.</p>
-          <input name="email" type="email" required placeholder="you@email.com" class="rsvp-input" />
+          <h3 style={qTitle}>what's your telegram username?</h3>
+          <p style={qHelp}>this is how we'll reach you about the jam — the @handle in your telegram profile, not your display name.</p>
+          <input name="telegram" type="text" required placeholder="@yourusername" pattern="@?[A-Za-z][A-Za-z0-9_]{4,31}" title="5–32 characters starting with a letter — letters, numbers and underscores only." autocomplete="off" autocapitalize="none" autocorrect="off" spellcheck="false" class="rsvp-input" />
         </div>
 
         <!-- Q14 heard -->
@@ -177,8 +189,8 @@ const infoChip = 'display:inline-flex; align-items:center; gap:8px; font-family:
         <div style="padding:var(--space-6) 0;">
           <div style="display:flex; align-items:baseline; gap:12px;"><span style={num}>question 15</span><span style={optTag}>optional</span></div>
           <h3 style={qTitle}>one last thing</h3>
-          <p style={qHelp}>you'll automatically join the amplify mailing list so we can tell you about future events.</p>
-          <button type="button" id="optout-btn" class="optout-btn"><span style="font-family:var(--font-display); font-size:18px; line-height:1;">✓</span> i'd like to opt out of the mailing list</button>
+          <p style={qHelp}>we'll add you to the amplify telegram updates so we can tell you about future jams.</p>
+          <button type="button" id="optout-btn" class="optout-btn"><span style="font-family:var(--font-display); font-size:18px; line-height:1;">✓</span> i'd like to opt out of updates</button>
         </div>
 
         <div id="rsvp-error" style="display:none; align-items:center; gap:10px; margin-top:var(--space-5); padding:14px 18px; border-radius:12px; background:color-mix(in oklch, var(--accent-primary) 12%, transparent); color:var(--accent-primary); font-size:var(--text-body-md); font-weight:600;">please answer the required questions before you send this in.</div>

@@ -3,7 +3,18 @@ import Base from '../layouts/Base.astro';
 import EventCard from '../components/EventCard.astro';
 import { getCollection } from 'astro:content';
 
+// Only jams that haven't happened yet, soonest first. Compared against the
+// start of today (UTC, matching how the dates are authored) so a jam still
+// lists on the day it runs. Past jams keep their /jams/<slug> page as an
+// archive — they just drop off this list.
+//
+// NB: this is a static build, so "today" is frozen at build time. A jam that
+// has passed will keep showing until the next deploy.
+const startOfToday = new Date();
+startOfToday.setUTCHours(0, 0, 0, 0);
+
 const events = (await getCollection('events', (e) => e.data.published !== false))
+  .filter((e) => e.data.date.valueOf() >= startOfToday.valueOf())
   .sort((a, b) => a.data.date.valueOf() - b.data.date.valueOf());
 ---
 
