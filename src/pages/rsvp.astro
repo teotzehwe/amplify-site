@@ -14,12 +14,11 @@ const sectionText = 'font-family:var(--font-display); font-weight:700; font-size
 const infoChip = 'display:inline-flex; align-items:center; gap:8px; font-family:var(--font-display); text-transform:uppercase; letter-spacing:0.05em; font-size:var(--text-body-sm); font-weight:700; border:1.5px solid rgba(255,255,255,.5); border-radius:999px; padding:9px 18px;';
 
 // The jam this RSVP form is collecting for. Change this block when the form
-// points at a new event — the hero, the info chips, the success message and
-// the event tag on every saved RSVP all read from here.
+// points at a new event — the info chips and the event tag on every saved
+// RSVP all read from here. Hero and success copy are fixed below.
 const jam = {
   // Stable id stored on every RSVP row, so one table serves every jam.
   slug: 'community-jam-vol-10',
-  headline: '20 september jam',
   dayLabel: 'sun · 20 september',
   timeLabel: '4:00 - 6:00 pm',
   venue: '340a joo chiat road',
@@ -34,7 +33,7 @@ const jam = {
       <div style="position:absolute; inset:0; background:linear-gradient(to top, rgba(11,9,9,.92), rgba(11,9,9,.45));"></div>
       <div style="position:relative; width:100%; max-width:var(--container-max); margin-inline:auto; padding:var(--space-9) var(--space-5) var(--space-8);">
         <span style="display:inline-block; font-family:var(--font-display); text-transform:uppercase; letter-spacing:0.08em; font-size:var(--text-body-sm); color:var(--wc-honey); font-weight:700;">you're invited · community jam</span>
-        <h1 style="font-family: Aileron; font-weight: 700; letter-spacing: -0.01em; text-transform: lowercase; line-height: 0.94; font-size: clamp(3rem,9vw,60px); margin: var(--space-3) 0 0;">rsvp for the<br />{jam.headline}</h1>
+        <h1 style="font-family: Aileron; font-weight: 700; letter-spacing: -0.01em; text-transform: lowercase; line-height: 0.94; font-size: clamp(3rem,9vw,60px); margin: var(--space-3) 0 0;">rsvp for our<br />next open jam</h1>
         <p style="font-size:var(--text-body-lg); line-height:1.6; color:rgba(255,255,255,.85); max-width:54ch; margin-top:var(--space-5);">we're so excited to meet you — fill in this quick form to secure your spot.</p>
         <div style="display:flex; flex-wrap:wrap; gap:var(--space-3); margin-top:var(--space-6);">
           <span style={infoChip}>{jam.dayLabel}</span>
@@ -49,7 +48,7 @@ const jam = {
       <div id="rsvp-success" style="display:none; flex-direction:column; align-items:center; text-align:center; gap:var(--space-4); background:var(--surface-sunken); border-radius:24px; padding:var(--space-9) var(--space-6);">
         <div style="width:72px; height:72px; border-radius:999px; background:var(--accent-primary); color:#fff; display:flex; align-items:center; justify-content:center; font-family:var(--font-display); font-size:36px;">♪</div>
         <h2 style="font-family:var(--font-display); font-weight:700; text-transform:lowercase; font-size:var(--text-heading-lg); margin:0;">you're on the list</h2>
-        <p style="margin:0; color:var(--text-secondary); font-size:var(--text-body-lg); max-width:44ch;">see you at the {jam.headline} ♪ we'll drop you a message soon!</p>
+        <p style="margin:0; color:var(--text-secondary); font-size:var(--text-body-lg); max-width:44ch;">see you at our next open jam ♪ we'll drop you a message soon!</p>
       </div>
 
       <form id="rsvp-form" data-event={jam.slug} novalidate>
