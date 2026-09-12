@@ -4,7 +4,7 @@ import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 
 interface Props {
-  /** Page-specific title; composed as "<title> · AmplifyForYouth". Omit on the home page. */
+  /** Optional page label for social previews (og/twitter). Browser tab title is always AmplifyForYouth. */
   title?: string;
   description?: string;
 }
@@ -12,7 +12,9 @@ interface Props {
 const SITE_NAME = 'AmplifyForYouth';
 const { title, description = 'A youth movement bringing young people together through music. You don’t have to be the best to belong.' } = Astro.props;
 
-const fullTitle = title ? `${title} · ${SITE_NAME}` : `${SITE_NAME} — youth music community`;
+/** Tab title stays brand-only; social titles use the page label when provided (no site-name suffix). */
+const documentTitle = SITE_NAME;
+const socialTitle = title ?? SITE_NAME;
 const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 const ogImage = new URL('/og-image.jpg', Astro.site);
 
@@ -36,7 +38,7 @@ const orgSchema = {
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>{fullTitle}</title>
+    <title>{documentTitle}</title>
     <meta name="description" content={description} />
     <link rel="canonical" href={canonicalURL} />
     <link rel="icon" type="image/png" href="/assets/logos/amplify-icon-mark-trim.png" />
@@ -44,7 +46,7 @@ const orgSchema = {
     <!-- Open Graph (link previews in Messages, WhatsApp, Slack, etc.) -->
     <meta property="og:type" content="website" />
     <meta property="og:site_name" content={SITE_NAME} />
-    <meta property="og:title" content={fullTitle} />
+    <meta property="og:title" content={socialTitle} />
     <meta property="og:description" content={description} />
     <meta property="og:url" content={canonicalURL} />
     <meta property="og:image" content={ogImage} />
@@ -54,7 +56,7 @@ const orgSchema = {
 
     <!-- Twitter / X -->
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content={fullTitle} />
+    <meta name="twitter:title" content={socialTitle} />
     <meta name="twitter:description" content={description} />
     <meta name="twitter:image" content={ogImage} />
 
