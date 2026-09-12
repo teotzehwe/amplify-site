@@ -12,7 +12,8 @@ const events = defineCollection({
     date: z.date(),
     timeLabel: z.string(),
     venue: z.string(),
-    rsvpUrl: z.string().default('/rsvp'),
+    // Omit on past/archive jams so detail pages don't show an RSVP CTA.
+    rsvpUrl: z.string().optional(),
     poster: z.string().optional(),
     published: z.boolean().default(true),
   }),

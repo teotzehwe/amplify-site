@@ -37,6 +37,8 @@ const weekday = date.toLocaleDateString('en-US', { weekday: 'long', timeZone: 'U
       <Content />
     </div>
 
-    <a href={rsvpUrl} class="btn-dark" style="margin-top:var(--space-6); display:inline-flex; align-items:center; justify-content:center; gap:8px; font-family:var(--font-display); text-transform:uppercase; letter-spacing:0.06em; font-weight:600; font-size:15px; padding:14px 30px; border-radius:999px; background:var(--text-primary); color:#fff;">rsvp for this jam →</a>
+    {rsvpUrl && (
+      <a href={rsvpUrl} class="btn-dark" style="margin-top:var(--space-6); display:inline-flex; align-items:center; justify-content:center; gap:8px; font-family:var(--font-display); text-transform:uppercase; letter-spacing:0.06em; font-weight:600; font-size:15px; padding:14px 30px; border-radius:999px; background:var(--text-primary); color:#fff;">rsvp for this jam →</a>
+    )}
   </main>
 </Base>

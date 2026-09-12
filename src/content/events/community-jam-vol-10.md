@@ -1,9 +1,10 @@
 ---
-title: "community jam vol. 8"
+title: "amplify open jam"
 tag: "community jam"
-date: 2026-08-29
+date: 2026-09-20
 timeLabel: "4:00pm - 6:00pm"
 venue: "340a Joo Chiat Road"
+rsvpUrl: "/rsvp"
 published: true
 ---
 

@@ -4,7 +4,6 @@ tag: "community jam"
 date: 2026-08-08
 timeLabel: "4:00pm - 6:00pm"
 venue: "340a Joo Chiat Road"
-rsvpUrl: "/rsvp"
 published: true
 ---
 
