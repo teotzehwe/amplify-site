@@ -52,8 +52,6 @@ img{ max-width:100%; }
 .chip{ font-family:var(--font-body); font-size:var(--text-body-sm); font-weight:600; color:var(--text-primary); background:var(--surface-page); border:1.5px solid var(--border-default); border-radius:999px; padding:9px 16px; cursor:pointer; transition:background .12s,color .12s,border-color .12s; margin:var(--space-3) var(--space-2) 0 0; }
 .chip:hover{ border-color:var(--text-primary); }
 .chip.selected{ background:var(--accent-primary); color:#fff; border-color:var(--accent-primary); }
-.optout-btn{ margin-top:var(--space-4); display:inline-flex; align-items:center; gap:10px; font-family:var(--font-body); font-size:var(--text-body-md); font-weight:600; color:var(--text-primary); background:var(--surface-page); border:1.5px solid var(--border-default); border-radius:12px; padding:12px 16px; cursor:pointer; text-align:left; }
-.optout-btn.selected{ background:var(--accent-primary); color:#fff; border-color:var(--accent-primary); }
 .rsvp-input{ margin-top:var(--space-4); width:100%; font-family:var(--font-body); font-size:var(--text-body-md); padding:13px 16px; border:1.5px solid var(--border-default); border-radius:12px; background:var(--surface-page); color:var(--text-primary); }
 .rsvp-input:focus{ outline:none; border-color:var(--accent-primary); }
 

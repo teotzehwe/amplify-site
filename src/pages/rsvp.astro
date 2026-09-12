@@ -79,118 +79,33 @@ const jam = {
           </div>
         </div>
 
-        <!-- Q4 school -->
+        <!-- Q4 instruments (always shown, optional) -->
         <div style={qBlock}>
-          <div style="display:flex; align-items:baseline; gap:12px;"><span style={num}>question 04</span><span style={reqTag}>required</span></div>
-          <h3 style={qTitle}>which school or institution?</h3>
-          <p style={qHelp}>helps us connect you with people nearby.</p>
-          <input name="school" type="text" required placeholder="e.g. Nanyang Polytechnic" class="rsvp-input" />
-        </div>
-
-        <div style={sectionHead}><span style={sectionRule}></span><span style={sectionText}>musical background</span></div>
-
-        <!-- Q5 music -->
-        <div style={qBlock}>
-          <div style="display:flex; align-items:baseline; gap:12px;"><span style={num}>question 05</span><span style={reqTag}>required</span><span style={optTag}>select all</span></div>
-          <h3 style={qTitle}>how do you make music?</h3>
-          <div class="q-chips" data-group="music" data-select="multi" data-required>
-            {options.music.map((o) => <button type="button" class="chip" data-value={o}>{o}</button>)}
-          </div>
-        </div>
-
-        <!-- Q6 instruments (conditional) -->
-        <div id="q-instruments" style={`${qBlock} display:none;`}>
-          <div style="display:flex; align-items:baseline; gap:12px;"><span style={num}>question 06</span><span style={optTag}>select all</span></div>
+          <div style="display:flex; align-items:baseline; gap:12px;"><span style={num}>question 04</span><span style={optTag}>optional</span><span style={optTag}>select all</span></div>
           <h3 style={qTitle}>which do you play?</h3>
-          <p style={qHelp}>pick all that apply.</p>
+          <p style={qHelp}>pick all that apply — skip if you don't play anything.</p>
           <div class="q-chips" data-group="instruments" data-select="multi">
             {options.instruments.map((o) => <button type="button" class="chip" data-value={o}>{o}</button>)}
           </div>
         </div>
 
-        <!-- Q7 listen -->
-        <div style={qBlock}>
-          <div style="display:flex; align-items:baseline; gap:12px;"><span style={num}>question 07</span><span style={reqTag}>required</span><span style={optTag}>select all</span></div>
-          <h3 style={qTitle}>what do you love to listen to?</h3>
-          <p style={qHelp}>helps us plan themed jam nights.</p>
-          <div class="q-chips" data-group="listen" data-select="multi" data-required>
-            {options.listen.map((o) => <button type="button" class="chip" data-value={o}>{o}</button>)}
-          </div>
-        </div>
-
-        <div style={sectionHead}><span style={sectionRule}></span><span style={sectionText}>your interests</span></div>
-
-        <!-- Q8 why -->
-        <div style={qBlock}>
-          <div style="display:flex; align-items:baseline; gap:12px;"><span style={num}>question 08</span><span style={reqTag}>required</span><span style={optTag}>select all</span></div>
-          <h3 style={qTitle}>why are you coming?</h3>
-          <p style={qHelp}>choose all that feel true.</p>
-          <div class="q-chips" data-group="why" data-select="multi" data-required>
-            {options.why.map((o) => <button type="button" class="chip" data-value={o}>{o}</button>)}
-          </div>
-        </div>
-
-        <!-- Q9 find -->
-        <div style={qBlock}>
-          <div style="display:flex; align-items:baseline; gap:12px;"><span style={num}>question 09</span><span style={reqTag}>required</span><span style={optTag}>select all</span></div>
-          <h3 style={qTitle}>what are you hoping to find?</h3>
-          <p style={qHelp}>through amplify, over time.</p>
-          <div class="q-chips" data-group="find" data-select="multi" data-required>
-            {options.find.map((o) => <button type="button" class="chip" data-value={o}>{o}</button>)}
-          </div>
-        </div>
-
-        <!-- Q10 showup -->
-        <div style={qBlock}>
-          <div style="display:flex; align-items:baseline; gap:12px;"><span style={num}>question 10</span><span style={reqTag}>required</span><span style={optTag}>select all</span></div>
-          <h3 style={qTitle}>what would you show up for?</h3>
-          <p style={qHelp}>pick all that appeal — it shapes our programming.</p>
-          <div class="q-chips" data-group="showup" data-select="multi" data-required>
-            {options.showup.map((o) => <button type="button" class="chip" data-value={o}>{o}</button>)}
-          </div>
-        </div>
-
-        <!-- Q11 first -->
-        <div style={qBlock}>
-          <div style="display:flex; align-items:baseline; gap:12px;"><span style={num}>question 11</span><span style={reqTag}>required</span></div>
-          <h3 style={qTitle}>is this your first amplify event?</h3>
-          <div class="q-chips" data-group="first" data-select="single" data-required>
-            {options.first.map((o) => <button type="button" class="chip" data-value={o}>{o}</button>)}
-          </div>
-        </div>
-
-        <!-- Q12 dream -->
-        <div style={qBlock}>
-          <div style="display:flex; align-items:baseline; gap:12px;"><span style={num}>question 12</span><span style={optTag}>optional</span></div>
-          <h3 style={qTitle}>if we organised one event you'd definitely attend, what would it be?</h3>
-          <textarea name="dream" rows="3" placeholder="Tell us your dream Amplify night…" class="rsvp-input" style="resize:vertical;"></textarea>
-        </div>
-
         <div style={sectionHead}><span style={sectionRule}></span><span style={sectionText}>stay connected</span></div>
 
-        <!-- Q13 telegram -->
+        <!-- Q5 telegram -->
         <div style={qBlock}>
-          <div style="display:flex; align-items:baseline; gap:12px;"><span style={num}>question 13</span><span style={reqTag}>required</span></div>
+          <div style="display:flex; align-items:baseline; gap:12px;"><span style={num}>question 05</span><span style={reqTag}>required</span></div>
           <h3 style={qTitle}>what's your telegram username?</h3>
           <p style={qHelp}>this is how we'll reach you about the jam — the @handle in your telegram profile, not your display name.</p>
           <input name="telegram" type="text" required placeholder="@yourusername" pattern="@?[A-Za-z][A-Za-z0-9_]{4,31}" title="5–32 characters starting with a letter — letters, numbers and underscores only." autocomplete="off" autocapitalize="none" autocorrect="off" spellcheck="false" class="rsvp-input" />
         </div>
 
-        <!-- Q14 heard -->
-        <div style={qBlock}>
-          <div style="display:flex; align-items:baseline; gap:12px;"><span style={num}>question 14</span><span style={optTag}>optional</span></div>
+        <!-- Q6 heard -->
+        <div style="padding:var(--space-6) 0;">
+          <div style="display:flex; align-items:baseline; gap:12px;"><span style={num}>question 06</span><span style={optTag}>optional</span></div>
           <h3 style={qTitle}>how did you hear about us?</h3>
           <div class="q-chips" data-group="heard" data-select="single">
             {options.heard.map((o) => <button type="button" class="chip" data-value={o}>{o}</button>)}
           </div>
-        </div>
-
-        <!-- Q15 optout -->
-        <div style="padding:var(--space-6) 0;">
-          <div style="display:flex; align-items:baseline; gap:12px;"><span style={num}>question 15</span><span style={optTag}>optional</span></div>
-          <h3 style={qTitle}>one last thing</h3>
-          <p style={qHelp}>we'll add you to the amplify telegram updates so we can tell you about future jams.</p>
-          <button type="button" id="optout-btn" class="optout-btn"><span style="font-family:var(--font-display); font-size:18px; line-height:1;">✓</span> i'd like to opt out of updates</button>
         </div>
 
         <div id="rsvp-error" style="display:none; align-items:center; gap:10px; margin-top:var(--space-5); padding:14px 18px; border-radius:12px; background:color-mix(in oklch, var(--accent-primary) 12%, transparent); color:var(--accent-primary); font-size:var(--text-body-md); font-weight:600;">please answer the required questions before you send this in.</div>

@@ -60,26 +60,26 @@ export const POST: APIRoute = async ({ request }) => {
     );
   }
 
-  // Column-for-column the shape the Apps Script already expects, with
-  // `telegram` in place of the old `email` field.
+  // Column-for-column the shape the Apps Script HEADERS already expects.
+  // Removed form fields are sent as empty strings so sheet columns stay aligned.
   const row = {
     timestamp: new Date().toISOString(),
     name,
     age: text(body.age),
     describe: text(body.describe),
-    school: text(body.school),
+    school: '',
     area: '',
-    music: joined(body.music),
+    music: '',
     instruments: joined(body.instruments),
-    listen: joined(body.listen),
-    why: joined(body.why),
-    find: joined(body.find),
-    showup: joined(body.showup),
-    first: text(body.first),
-    dream: text(body.dream, 2000),
+    listen: '',
+    why: '',
+    find: '',
+    showup: '',
+    first: '',
+    dream: '',
     telegram,
     heard: text(body.heard),
-    mailing_list: body.mailing_list === false ? 'opted out' : 'subscribed',
+    mailing_list: 'subscribed',
     event: text(body.event_slug, 100),
   };
 

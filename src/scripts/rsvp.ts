@@ -1,11 +1,7 @@
-import { performing } from '../data/rsvpQuestions';
-
 export function initRsvp() {
   const form = document.getElementById('rsvp-form') as HTMLFormElement | null;
   if (!form) return;
 
-  const instrumentsBlock = document.getElementById('q-instruments');
-  const optout = document.getElementById('optout-btn');
   const errorBox = document.getElementById('rsvp-error');
   const successBox = document.getElementById('rsvp-success');
   const submitBtn = form.querySelector<HTMLButtonElement>('button[type="submit"]');
@@ -34,13 +30,6 @@ export function initRsvp() {
     submitBtn.style.cursor = busy ? 'wait' : 'pointer';
   }
 
-  function updateInstruments() {
-    if (!instrumentsBlock) return;
-    const show = selectedValues('music').some((v) => performing.includes(v));
-    instrumentsBlock.style.display = show ? 'block' : 'none';
-    if (!show) instrumentsBlock.querySelectorAll('.chip.selected').forEach((c) => c.classList.remove('selected'));
-  }
-
   // Chip selection (single = radio-like, multi = toggle)
   form.querySelectorAll<HTMLElement>('.q-chips').forEach((group) => {
     const single = group.dataset.select === 'single';
@@ -52,12 +41,9 @@ export function initRsvp() {
         } else {
           chip.classList.toggle('selected');
         }
-        if (group.dataset.group === 'music') updateInstruments();
       });
     });
   });
-
-  optout?.addEventListener('click', () => optout.classList.toggle('selected'));
 
   form.addEventListener('submit', async (e) => {
     e.preventDefault();
@@ -79,18 +65,9 @@ export function initRsvp() {
       name: (data.get('name') as string) || '',
       age: selectedValues('age')[0] || '',
       describe: selectedValues('describe')[0] || '',
-      school: (data.get('school') as string) || '',
-      music: selectedValues('music'),
       instruments: selectedValues('instruments'),
-      listen: selectedValues('listen'),
-      why: selectedValues('why'),
-      find: selectedValues('find'),
-      showup: selectedValues('showup'),
-      first: selectedValues('first')[0] || '',
-      dream: (data.get('dream') as string) || '',
       telegram: (data.get('telegram') as string) || '',
       heard: selectedValues('heard')[0] || '',
-      mailing_list: !optout?.classList.contains('selected'),
     };
 
     // The success screen is only shown once the server confirms the row was
