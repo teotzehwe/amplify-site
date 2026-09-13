@@ -33,6 +33,25 @@ const joined = (v: unknown): string =>
         .join(', ')
     : '';
 
+/** Singapore local time as `YYYY/MM/DD HH:MM.SS` (period before seconds). */
+const SG_TZ = 'Asia/Singapore';
+const sgParts = new Intl.DateTimeFormat('en-GB', {
+  timeZone: SG_TZ,
+  year: 'numeric',
+  month: '2-digit',
+  day: '2-digit',
+  hour: '2-digit',
+  minute: '2-digit',
+  second: '2-digit',
+  hourCycle: 'h23',
+});
+const formatSgTimestamp = (d = new Date()): string => {
+  const p = Object.fromEntries(
+    sgParts.formatToParts(d).filter((x) => x.type !== 'literal').map((x) => [x.type, x.value]),
+  );
+  return `${p.year}/${p.month}/${p.day} ${p.hour}:${p.minute}.${p.second}`;
+};
+
 // Telegram's own rule: 5-32 chars, starts with a letter, letters/digits/
 // underscores only. Stored lowercased and without the leading @ so the same
 // person is recognisable however they typed it.
@@ -63,7 +82,7 @@ export const POST: APIRoute = async ({ request }) => {
   // Column-for-column the shape the Apps Script HEADERS already expects.
   // Removed form fields are sent as empty strings so sheet columns stay aligned.
   const row = {
-    timestamp: new Date().toISOString(),
+    timestamp: formatSgTimestamp(),
     name,
     age: text(body.age),
     describe: text(body.describe),

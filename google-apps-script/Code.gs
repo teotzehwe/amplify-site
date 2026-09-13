@@ -90,3 +90,55 @@ function doPost(e) {
 function doGet() {
   return ContentService.createTextOutput('Amplify RSVP endpoint is live.');
 }
+
+/**
+ * ONE-SHOT migration — run manually from the Apps Script editor
+ * (Run ▸ reformatTimestampsOnce). Never called by doPost/doGet.
+ *
+ * Rewrites existing timestamp cells that still look like ISO-8601
+ * (e.g. 2026-09-12T09:31:41.950Z) into Asia/Singapore local time as
+ * YYYY/MM/DD HH:MM.SS (period before seconds). Already-reformatted
+ * cells and blank cells are left alone.
+ *
+ * After running, check the sheet: column A should read like
+ *   2026/09/12 17:31.41
+ * then Redeploy is NOT required for this helper (it is editor-only).
+ */
+function reformatTimestampsOnce() {
+  var tz = 'Asia/Singapore';
+  var pattern = 'yyyy/MM/dd HH:mm.ss';
+  var ss = SpreadsheetApp.getActiveSpreadsheet();
+  var sheet = ss.getSheetByName(SHEET_NAME);
+  if (!sheet || sheet.getLastRow() < 2) return;
+
+  var lastRow = sheet.getLastRow();
+  var range = sheet.getRange(2, 1, lastRow, 1); // column A = timestamp
+  var values = range.getValues();
+  var changed = 0;
+
+  for (var i = 0; i < values.length; i++) {
+    var v = values[i][0];
+    var d = null;
+
+    if (Object.prototype.toString.call(v) === '[object Date]' && !isNaN(v.getTime())) {
+      d = v;
+    } else if (typeof v === 'string') {
+      var s = v.trim();
+      // ISO-8601 only — skip cells already in YYYY/MM/DD HH:MM.SS
+      if (/^\d{4}-\d{2}-\d{2}T/.test(s)) {
+        d = new Date(s);
+        if (isNaN(d.getTime())) d = null;
+      }
+    }
+
+    if (d) {
+      values[i][0] = Utilities.formatDate(d, tz, pattern);
+      changed++;
+    }
+  }
+
+  if (changed > 0) {
+    range.setValues(values);
+  }
+  Logger.log('reformatTimestampsOnce: updated ' + changed + ' of ' + values.length + ' rows');
+}
